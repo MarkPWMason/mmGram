@@ -1,4 +1,18 @@
 .homeContainer {
     min-height: 100vh;
     background-color: #7285a3;
+    display: flex;
+    flex-direction: column;
+}
+
+.createPostBtn{
+    margin: 20px auto;
+    height: 50px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: #9ea372;
+}
+
+.createPostBtn:hover {
+    cursor: pointer;
 }

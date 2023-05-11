@@ -8,16 +8,19 @@ import {
   selectAuthToken,
   selectUserID,
 } from '../../redux/slices/userSlice';
+import { selectPostModalId, setModalId } from '../../redux/slices/modalSlice';
 
 const PostComp = ({ post }: { post: IPost }) => {
   const authToken = useSelector(selectAuthToken);
 
-  const [showModal, setShowModal] = useState<boolean>(false);
   const [updatedTitle, setUpdatedTitle] = useState<string>(post.title);
   const [updatedContent, setUpdatedContent] = useState<string>(post.content);
   const [updatedImage, setUpdatedImage] = useState<any>(post.imageUrl);
 
+  console.log(updatedImage);
   const userID = useSelector(selectUserID);
+  const modalId = useSelector(selectPostModalId);
+
   const isOwner = post.user_id.toString() === userID.toString();
   console.log(typeof post.user_id, typeof userID.toString());
   if (post.user_id === userID.toString()) {
@@ -25,27 +28,30 @@ const PostComp = ({ post }: { post: IPost }) => {
   } else {
     console.log(false);
   }
-
-  console.log(authToken);
-  console.log(isOwner, post.user_id, userID);
   //delete
   const dispatch = useDispatch();
   return (
-    <>
+    <div className={styles.postComp}>
       <div className={styles.postContainer}>
-        <h1>{post.title}</h1>
-        <p>{post.content}</p>
-        <img src={post.imageUrl} alt="" />
+        <h1 className={styles.postTitle}>{post.title}</h1>
+        <p className={styles.postContent}>{post.content}</p>
+        <img className={styles.postImage} src={post.imageUrl} alt="" />
         {isOwner && (
-          <>
+          <div className={styles.postBtn}>
             <button
+              className={styles.promptBtn}
               onClick={() => {
-                setShowModal(true);
+                dispatch(setModalId({ postModalId: post.id }));
               }}
             >
-              EDIT
+              <img
+                className={styles.postPrompts}
+                src="/images/edit.svg"
+                alt="EDIT"
+              />
             </button>
             <button
+              className={styles.promptBtn}
               onClick={() => {
                 fetch('http://localhost:5000/deletepost', {
                   method: 'DELETE',
@@ -61,9 +67,9 @@ const PostComp = ({ post }: { post: IPost }) => {
                     if (res.status === 200) {
                       return res.text();
                     } else if (res.status === 403) {
-                      throw new Error("Unauthorized")
+                      throw new Error('Unauthorized');
                     } else if (res.status === 500) {
-                      throw new Error("Server Error") 
+                      throw new Error('Server Error');
                     }
                   })
                   .then((data) => {
@@ -71,25 +77,30 @@ const PostComp = ({ post }: { post: IPost }) => {
                     dispatch(deletePosts({ id: post.id }));
                   })
                   .catch((err) => {
-                    if(err.message === "Unauthorized"){
-                      alert('Unauthorized error message')
+                    if (err.message === 'Unauthorized') {
+                      alert('Unauthorized error message');
                       dispatch(removeUserValues());
-                    }else if(err.message === "Server Error"){
-                      alert('Server Error')
+                    } else if (err.message === 'Server Error') {
+                      alert('Server Error');
                     }
                     console.error(err);
                   });
               }}
             >
-              DELT
+              <img
+                className={styles.postPrompts}
+                src="/images/delete.svg"
+                alt="DELETE"
+              />
             </button>
-          </>
+          </div>
         )}
       </div>
 
-      {showModal && (
+      {modalId === post.id && (
         <div>
           <form
+            className={styles.editPostForm}
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -120,10 +131,12 @@ const PostComp = ({ post }: { post: IPost }) => {
                   /* 
                     was not sending the up to date values I was recieving from data instead I was sending the old values from form data.
                   */
-                  console.log(data);
+                  dispatch(setModalId({ postModalId: -1 }))
                   const title = data.title;
                   const imageUrl = data.imageUrl;
                   const content = data.content;
+
+                  console.log('FRONTEND RECIEVES FROM BACKEND: ', imageUrl);
                   dispatch(
                     updatePosts({
                       user_id: post.user_id,
@@ -148,7 +161,13 @@ const PostComp = ({ post }: { post: IPost }) => {
                 });
             }}
           >
+            <button onClick={() => {
+              dispatch(setModalId({ postModalId: -1 }))
+            }} className={styles.closeBtn}>
+              X
+            </button>
             <input
+              className={styles.updatePostTitle}
               type="text"
               placeholder="Title"
               value={updatedTitle}
@@ -157,6 +176,7 @@ const PostComp = ({ post }: { post: IPost }) => {
               }}
             />
             <textarea
+              className={styles.updatePostContent}
               placeholder="Content"
               cols={30}
               rows={10}
@@ -166,6 +186,7 @@ const PostComp = ({ post }: { post: IPost }) => {
               }}
             />
             <input
+              className={styles.updatePostImage}
               placeholder="Image"
               type="file"
               accept="image/png, image/gif, image/jpeg, image/webp"
@@ -174,11 +195,13 @@ const PostComp = ({ post }: { post: IPost }) => {
                   setUpdatedImage(e.currentTarget.files[0]);
               }}
             />
-            <button type="submit">POST</button>
+            <button className={styles.updatePostSubmit} type="submit">
+              POST
+            </button>
           </form>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

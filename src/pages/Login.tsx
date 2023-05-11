@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserValues } from '../redux/slices/userSlice';
 
+import styles from './Login.module.css';
+
 const Login = () => {
   const [username, setUsername] = useState<string>('test1');
   const [password, setPassword] = useState<string>('test2');
@@ -9,8 +11,9 @@ const Login = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={styles.loginContainer}>
       <form
+        className={styles.login}
         onSubmit={(e) => {
           e.preventDefault();
           fetch('http://localhost:5000/login', {
@@ -48,7 +51,9 @@ const Login = () => {
             });
         }}
       >
+        <h1 className={styles.loginTitle}>LOGIN</h1>
         <input
+          className={styles.loginUsername}
           type="text"
           placeholder="username"
           value={username}
@@ -57,6 +62,7 @@ const Login = () => {
           }}
         />
         <input
+          className={styles.loginPassword}
           type="text"
           placeholder="password"
           value={password}
@@ -64,7 +70,9 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         />
-        <button type="submit">LOGIN</button>
+        <button className={styles.loginBtn} type="submit">
+          LOGIN
+        </button>
       </form>
     </div>
   );

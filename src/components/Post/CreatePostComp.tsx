@@ -8,8 +8,9 @@ import {
 } from '../../redux/slices/userSlice';
 
 import styles from './CreatePostComp.module.css';
+import { setModalState } from '../../redux/slices/modalSlice';
 
-const CreatePostComp = ({ createPost }: { createPost: any }) => {
+const CreatePostComp = () => {
   const [postTitle, setPostTitle] = useState<any>('');
   const [postContent, setPostContent] = useState<any>('');
   const [postImage, setPostImage] = useState<any>(null);
@@ -22,11 +23,11 @@ const CreatePostComp = ({ createPost }: { createPost: any }) => {
   return (
     <div>
       <form
+        className={styles.createPostForm}
         encType="multipart/form-data"
         onSubmit={(e) => {
           e.preventDefault();
           //post to the api have the api return the id then set it below instead of 1
-          console.log('userID ', userID.toString());
           const fd = new FormData();
           fd.append('image', postImage);
           fd.append('title', postTitle);
@@ -50,7 +51,6 @@ const CreatePostComp = ({ createPost }: { createPost: any }) => {
               }
             })
             .then((data) => {
-              console.log('create data', data.user_id);
               const id = data.id;
               const imageUrl = data.imageUrl;
 
@@ -63,14 +63,18 @@ const CreatePostComp = ({ createPost }: { createPost: any }) => {
                   user_id: userID,
                 })
               );
-              createPost(false);
+              dispatch(setModalState({modalState: false}));
             })
             .catch((err) => {
               console.error(err);
             });
         }}
       >
+        <button onClick={()=>{
+          dispatch(setModalState({modalState: false}));
+        }} className={styles.closeBtn}>X</button>
         <input
+          className={styles.createPostTitle}
           type="text"
           name="title"
           placeholder="Title"
@@ -80,6 +84,7 @@ const CreatePostComp = ({ createPost }: { createPost: any }) => {
           }}
         />
         <textarea
+          className={styles.createPostContent}
           name="content"
           placeholder="Content"
           cols={30}
@@ -89,6 +94,7 @@ const CreatePostComp = ({ createPost }: { createPost: any }) => {
           }}
         />
         <input
+          className={styles.createPostImage}
           id="image"
           name="image"
           placeholder="Image"
@@ -99,7 +105,7 @@ const CreatePostComp = ({ createPost }: { createPost: any }) => {
               setPostImage(e.currentTarget.files[0]);
           }}
         />
-        <input type="submit" value={'POST'} />
+        <input className={styles.createPostSubmit} type="submit" value={'POST'} />
       </form>
     </div>
   );

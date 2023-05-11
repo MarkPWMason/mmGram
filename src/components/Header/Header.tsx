@@ -1,9 +1,13 @@
 import React from 'react';
 
-import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeUserValues, selectAuthToken } from '../../redux/slices/userSlice';
+import {
+  removeUserValues,
+  selectAuthToken,
+} from '../../redux/slices/userSlice';
+
+import styles from './Header.module.css';
 
 const Header = () => {
   const authToken = useSelector(selectAuthToken);
@@ -11,12 +15,29 @@ const Header = () => {
 
   return (
     <div className={styles.headerContainer}>
-      <Link to={'/'}>Home</Link>
-      <Link to={'/register'}>Register</Link>
-      {authToken === '' && <Link to={'/login'}>Login</Link>}
-      {authToken !== '' && <p onClick={() => {
-        dispatch(removeUserValues())
-      }}>Logout</p>}
+      <div className={styles.homeBtnContainer}>
+        <Link to={'/'}>
+          <img
+            className={styles.homeBtn}
+            src="/images/home.svg"
+            alt="Home"
+          />
+        </Link>
+      </div>
+
+      <div className={styles.accountBtn}>
+        <Link className={styles.accountBtnContent} to={'/register'}>Register</Link>
+        {authToken === '' && <Link className={styles.accountBtnContent} to={'/login'}>Login</Link>}
+        {authToken !== '' && (
+          <p className={styles.accountBtnContent}
+            onClick={() => {
+              dispatch(removeUserValues());
+            }}
+          >
+            Logout
+          </p>
+        )}
+      </div>
     </div>
   );
 };

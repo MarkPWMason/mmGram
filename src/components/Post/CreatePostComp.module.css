@@ -1,0 +1,99 @@
+.createPostForm {
+  z-index: 2;
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  margin: auto auto;
+  height: 600px;
+  width: 800px;
+  border-radius: 12px;
+  background-color: #a39072;
+
+  padding: 40px;
+}
+
+.closeBtn{
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 30px;
+  background-color: white;
+  font-weight: bolder;
+  align-self: flex-end;
+  margin: 0;
+}
+
+.closeBtn:hover{
+  cursor: pointer;
+  color: red;
+}
+
+.createPostTitle {
+  text-align: center;
+  align-self: center;
+  height: 40px;
+  width: 400px;
+
+  font-size: 30px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+}
+
+.createPostContent {
+  text-align: center;
+  align-self: center;
+  height: 200px;
+  width: 650px;
+
+  font-size: 30px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+}
+
+.createPostImage {
+  text-align: center;
+  align-self: center;
+  height: 40px;
+  width: 300px;
+
+  font-size: 20px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+}
+
+.createPostImage:hover{
+    cursor: pointer;
+}
+
+.createPostImage::file-selector-button{
+    cursor: pointer;
+    border-radius: 10px;   
+}
+
+.createPostImage::file-selector-button:active{
+    background-color: #9ea372;
+}
+
+.createPostSubmit {
+  text-align: center;
+  align-self: center;
+  height: 40px;
+  width: 250px;
+
+  font-size: 30px;
+  border-radius: 12px;
+  
+  margin: 20px auto;
+}
+
+.createPostSubmit:hover{
+    cursor: pointer;
+}
+
+.createPostSubmit:active{
+    background-color: #9ea372;
+}

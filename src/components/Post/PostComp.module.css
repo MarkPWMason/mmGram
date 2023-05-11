@@ -1,3 +1,158 @@
+.postComp {
+  position: relative;
+}
+
 .postContainer {
-    background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  background-color: #9ea372;
+
+  justify-content: center;
+  align-content: center;
+
+  margin: 15px auto;
+  width: 800px;
+  height: 800px;
+  border-radius: 10px;
+  border: 3px solid #a39072;
+}
+
+.postTitle {
+  align-self: center;
+  font-size: 60px;
+  margin: 10px auto;
+}
+
+.postContent {
+  align-self: center;
+  font-size: 30px;
+  margin: 10px auto;
+}
+
+.postImage {
+  align-self: center;
+  width: 500px;
+  height: 500px;
+  margin: 20px;
+
+  object-fit: cover;
+}
+
+.postBtn {
+  display: flex;
+  margin: 0 auto;
+}
+
+.promptBtn {
+  background-color: white;
+  align-content: center;
+  margin: 10px;
+}
+
+.promptBtn:hover {
+  cursor: pointer;
+}
+
+.postPrompts {
+  width: 25px;
+  height: 25px;
+}
+
+.editPostForm {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin: auto auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 600px;
+  width: 800px;
+  border-radius: 12px;
+  background-color: #a39072;
+  padding: 40px;
+}
+
+.closeBtn {
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 30px;
+  background-color: white;
+  font-weight: bolder;
+  align-self: flex-end;
+  margin: 0;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.updatePostTitle {
+  text-align: center;
+  align-self: center;
+  height: 40px;
+  width: 400px;
+
+  font-size: 30px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+}
+
+.updatePostContent {
+  text-align: center;
+  align-self: center;
+  height: 200px;
+  width: 650px;
+
+  font-size: 30px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+}
+
+.updatePostImage {
+  text-align: center;
+  align-self: center;
+  height: 40px;
+  width: 300px;
+
+  font-size: 20px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+}
+.updatePostImage:hover {
+  cursor: pointer;
+}
+
+.updatePostImage::file-selector-button {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.updatePostImage::file-selector-button:active {
+  background-color: #9ea372;
+}
+
+.updatePostSubmit {
+  text-align: center;
+  align-self: center;
+  height: 40px;
+  width: 250px;
+
+  font-size: 30px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+}
+
+.updatePostSubmit:hover {
+  cursor: pointer;
+}
+
+.updatePostSubmit:active {
+  background-color: #9ea372;
 }

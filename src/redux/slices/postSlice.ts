@@ -52,12 +52,15 @@ export const postSlice = createSlice({
     },
     updatePosts: (state, action) => {
       const { title, content, imageUrl, id } = action.payload;
+      console.log("image from slice: ", imageUrl)
       if (state.posts != null) {
         state.posts = state.posts.map((p) => {
           if (p.id === id) {
             p.content = content;
             p.title = title;
-            p.imageUrl = imageUrl;
+            if (imageUrl !== null && typeof imageUrl != 'undefined') {
+              p.imageUrl = imageUrl;
+            }
           }
           return p;
         });
