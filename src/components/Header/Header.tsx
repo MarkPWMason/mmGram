@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   removeUserValues,
   selectAuthToken,
+  selectUsername,
 } from '../../redux/slices/userSlice';
 
 import styles from './Header.module.css';
 
 const Header = () => {
   const authToken = useSelector(selectAuthToken);
+  const username = useSelector(selectUsername);
   const dispatch = useDispatch();
 
   return (
@@ -23,6 +25,7 @@ const Header = () => {
             alt="Home"
           />
         </Link>
+        <Link to={'/profile'} id={styles.usernameLink}>{username}</Link>
       </div>
 
       <div className={styles.accountBtn}>

@@ -31,7 +31,6 @@ export const userSlice = createSlice({
       state.username = username;
       state.auth_token = auth_token;
       //if you log state it doesn't work then you need current
-      console.log(current(state));
       storeInLocalStorage(JSON.stringify(state));
     },
     removeUserValues: (state) => {

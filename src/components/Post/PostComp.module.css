@@ -3,6 +3,164 @@
 }
 
 .postContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #9ea372;
+  color: #fff;
+  justify-content: center;
+  align-content: center;
+
+  margin: 15px auto;
+  width: 800px;
+  height: 800px;
+  
+  background: transparent;
+  overflow: hidden;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em;
+}
+
+span {
+  position: absolute;
+  border-radius: 100vmax;
+}
+
+.top {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    transparent 50%,
+    rgba(73, 49, 255, 0.5),
+    rgb(73, 49, 255)
+  );
+}
+
+.bottom {
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    rgb(182, 37, 255),
+    rgba(182, 37, 255, 0.5),
+    transparent 50%
+  );
+}
+
+.right {
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(82, 0, 137, 0.5),
+    rgb(82, 0, 137)
+  );
+}
+
+.left {
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(77, 0, 210),
+    rgba(77, 0, 210, 0.5),
+    transparent 70%
+  );
+}
+
+.top {
+  animation: animateTop 5s ease-in-out infinite;
+}
+
+.bottom {
+  animation: animateBottom 5s ease-in-out infinite;
+}
+
+.right {
+  animation: animateRight 5s ease-in-out infinite;
+}
+
+.left {
+  animation: animateLeft 5s ease-in-out infinite;
+}
+
+@keyframes animateTop {
+  25% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  30%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateBottom {
+  0%,
+  50% {
+    opacity: 0;
+    width: 0;
+  }
+
+  75% {
+    opacity: 1;
+    width: 100%;
+  }
+
+  76%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animateRight {
+  0%,
+  25% {
+    opacity: 0;
+    height: 0;
+  }
+
+  50% {
+    opacity: 1;
+    height: 100%;
+  }
+
+  55%,
+  100% {
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes animateLeft {
+  0%,
+  75% {
+    opacity: 0;
+    bottom: 0;
+    height: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 100%;
+  }
+}
+
+.postContainerPowerUp {
   display: flex;
   flex-direction: column;
   background-color: #9ea372;
@@ -14,7 +172,17 @@
   width: 800px;
   height: 800px;
   border-radius: 10px;
-  border: 3px solid #a39072;
+  background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
+  animation: rotate 0.2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 .postTitle {
@@ -24,6 +192,7 @@
 }
 
 .postContent {
+  text-align: center;
   align-self: center;
   font-size: 30px;
   margin: 10px auto;
@@ -34,19 +203,22 @@
   width: 500px;
   height: 500px;
   margin: 20px;
-
+  border-radius: 10px;
   object-fit: cover;
+  border: 5px solid purple;
 }
 
 .postBtn {
   display: flex;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .promptBtn {
+  display: flex;
   background-color: white;
-  align-content: center;
   margin: 10px;
+  justify-content: space-between;
+  align-self: center;
 }
 
 .promptBtn:hover {
@@ -155,4 +327,81 @@
 
 .updatePostSubmit:active {
   background-color: #9ea372;
+}
+
+.postBtnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto auto;
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.comments {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+  align-content: center;
+}
+
+.likeNumber {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.likeBtnImg {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-left: 15px;
+}
+
+.likeBtnImg:hover {
+  cursor: pointer;
+}
+
+@keyframes like {
+  0% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+.likeBtnImg:active {
+  -webkit-animation: like 0.5s 1;
+  animation: like 0.5s 1;
+}
+
+.postPrompt {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  margin-left: 150px;
+}
+
+.commentBtn {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+
+  margin-left: 15px;
+}
+
+.commentBtn:hover {
+  cursor: pointer;
+}
+
+.commentBtn:active {
+  -webkit-animation: like 0.5s 1;
+  animation: like 0.5s 1;
 }

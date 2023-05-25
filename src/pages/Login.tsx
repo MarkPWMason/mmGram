@@ -5,8 +5,8 @@ import { setUserValues } from '../redux/slices/userSlice';
 import styles from './Login.module.css';
 
 const Login = () => {
-  const [username, setUsername] = useState<string>('test1');
-  const [password, setPassword] = useState<string>('test2');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const dispatch = useDispatch();
 
@@ -32,7 +32,6 @@ const Login = () => {
               }
             })
             .then((data) => {
-              console.log(data);
               dispatch(
                 setUserValues({
                   username: data.username,
@@ -74,6 +73,14 @@ const Login = () => {
           LOGIN
         </button>
       </form>
+      <button
+      className={styles.redirectBtn}
+        onClick={() => {
+          window.location.href = '/register';
+        }}
+      >
+        Don't have an account? create one
+      </button>
     </div>
   );
 };

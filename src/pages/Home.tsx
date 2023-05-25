@@ -8,20 +8,19 @@ import { selectModalOpen, setModalState } from '../redux/slices/modalSlice';
 
 const Home = () => {
   const authToken = useSelector(selectAuthToken);
-
-  const dispatch = useDispatch();
   const createPost = useSelector(selectModalOpen);
+  const dispatch = useDispatch();
 
   if (authToken === '') {
     //check if it was stored in localStorage
     let localAuthToken = sessionStorage.getItem('auth');
     if (localAuthToken !== null) {
       const data = JSON.parse(localAuthToken);
-      console.log('loaded data');
       dispatch(
         setUserValues({
           user_id: data.user_id,
           auth_token: data.auth_token,
+          username: data.username
         })
       );
     }

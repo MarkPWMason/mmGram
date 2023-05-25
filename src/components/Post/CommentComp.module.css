@@ -1,0 +1,95 @@
+.commentContainer{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    right: 0;
+    top: 50px;
+    margin: auto auto;
+    width: 850px;
+    height: 650px;
+    background-color: #A39072;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    justify-self: center;
+    margin: 10px auto;
+    width: 800px;
+    height: 500px;
+    background-color: #c8b393;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.comment{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 20px 6px 20px;
+    width: auto;
+    justify-content: space-between;
+    font-size: 25px;
+}
+
+.commentInput {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.replyForm{
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 600px;
+    height: 60px;
+    margin: auto auto;
+    display: flex;
+}
+
+.repliedComment {
+    display: flex;
+    margin: 0 40px 5px 40px;
+    width: auto;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.replyingComment{
+    height: 20px;
+    align-self: center;
+}
+
+.commentInput{
+    align-self: flex-end;
+    margin-bottom: 5px;
+}
+
+.replyBtn{
+    background-color: transparent;
+    border: none;
+    font-size: 11px;
+}
+.replyBtn:hover{
+    cursor: pointer;
+}
+
+.closeBtn{
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.closeBtn:hover{
+    cursor: pointer;
+    color: red;
+}

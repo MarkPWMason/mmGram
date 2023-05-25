@@ -1,8 +1,7 @@
 .headerContainer {
     height: 100px;
     width: auto;
-    border: 3px solid black;
-    background-color: #A39072;
+    background-color: #292929;
     display: flex;
     justify-content: space-between;
 }
@@ -34,4 +33,13 @@
 .accountBtnContent:hover{
     cursor: pointer;
     color: #7285a3;
+}
+
+#usernameLink{
+    font-size: 30px;
+    text-align: center;
+    margin-left: 40px ;
+    text-decoration: none;
+    color: white;
+    font-weight: 900;
 }

@@ -17,7 +17,17 @@ export const postSlice = createSlice({
     setPost: (state, action) => {
       //state is passed to the reducer
       //action is the payload that i pass
-      const { title, content, imageUrl, id, user_id } = action.payload;
+      const {
+        title,
+        content,
+        imageUrl,
+        id,
+        user_id,
+        likes,
+        comments,
+        hasLiked,
+        isVideo
+      } = action.payload;
       if (state.posts == null) {
         state.posts = [
           {
@@ -26,6 +36,10 @@ export const postSlice = createSlice({
             content: content,
             imageUrl: imageUrl,
             user_id: user_id,
+            likes: likes,
+            comments: comments,
+            hasLiked:hasLiked,
+            isVideo: isVideo
           },
         ];
       } else {
@@ -35,6 +49,10 @@ export const postSlice = createSlice({
           content: content,
           imageUrl: imageUrl,
           user_id: user_id,
+          likes: likes,
+          comments: comments,
+          hasLiked: hasLiked,
+          isVideo:isVideo
         });
       }
     },
@@ -51,8 +69,7 @@ export const postSlice = createSlice({
       }
     },
     updatePosts: (state, action) => {
-      const { title, content, imageUrl, id } = action.payload;
-      console.log("image from slice: ", imageUrl)
+      const { title, content, imageUrl, id, isVideo } = action.payload;
       if (state.posts != null) {
         state.posts = state.posts.map((p) => {
           if (p.id === id) {
@@ -60,18 +77,84 @@ export const postSlice = createSlice({
             p.title = title;
             if (imageUrl !== null && typeof imageUrl != 'undefined') {
               p.imageUrl = imageUrl;
+              p.isVideo = isVideo
             }
           }
           return p;
         });
       }
     },
+    updatePostLikes: (state, action) => {
+      const { id, likes } = action.payload;
+      if (state.posts !== null) {
+        state.posts = state.posts.map((p: IPost) => {
+          if (p.id === id) {
+            p.likes = likes;
+          }
+          return p;
+        });
+      }
+    },
+    addCommentToPost: (state, action) => {
+      const { id, post_id, user_id, comment, username, reply_id } =
+        action.payload;
+      if (state.posts !== null && state.posts.length > 0) {
+        state.posts = state.posts.map((post: IPost) => {
+          if (post_id === post.id) {
+            if (reply_id === null) {
+              post.comments.push({
+                id: id,
+                user_id: user_id,
+                comment: comment,
+                username: username,
+                children: [],
+              });
+            } else {
+              post.comments.forEach((c: any) => {
+                if (c.id === reply_id) {
+                  c.children.push({
+                    id: id,
+                    user_id: user_id,
+                    comment: comment,
+                    username: username,
+                    children: [],
+                    reply_id: reply_id
+                  });
+                }
+              });
+            }
+            
+          }
+          return post;
+        });
+      }
+      
+    },
+    setComments: (state, action) => {
+      const { post_id, comments } = action.payload;
+
+      if (state.posts !== null && state.posts.length > 0) {
+        state.posts = state.posts.map((post: IPost) => {
+          if (post_id === post.id) {
+            post.comments = comments;
+          }
+          return post;
+        });
+      }
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setPost, setAllPosts, deletePosts, updatePosts } =
-  postSlice.actions;
+export const {
+  setPost,
+  setAllPosts,
+  deletePosts,
+  updatePosts,
+  updatePostLikes,
+  addCommentToPost,
+  setComments,
+} = postSlice.actions;
 export const selectPosts = (state: RootState) => state.postSlice.posts;
 
 export default postSlice.reducer;

@@ -1,7 +1,9 @@
 .loginContainer {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: #7285a3;
+  padding: 100px;
 }
 
 .login {
@@ -61,4 +63,12 @@
 
 .loginBtn:active{
     background-color: #7285a3;
+}
+
+.redirectBtn{
+  background-color: transparent;
+  border: none;
+}
+.redirectBtn:hover{
+  cursor: pointer;
 }

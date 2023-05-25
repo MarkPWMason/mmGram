@@ -32,7 +32,6 @@ const Register = () => {
               }
             })
             .then((data) => {
-              console.log('Data: ', data);
               if (data.isLoggedIn === true) {
                 dispatch(
                   setUserValues({
@@ -43,7 +42,6 @@ const Register = () => {
                 );
                 window.location.href = '/';
               } else if (data.isLoggedIn === false) {
-                console.log('send to login page');
                 window.location.href = '/login';
               }
             })

@@ -1,0 +1,7 @@
+.profileContainer{
+    min-height: 100vh;
+    background-color: #7285a3;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(30px, 2fr));
+    grid-template-rows: repeat(3, minmax(30px, 2fr));
+}

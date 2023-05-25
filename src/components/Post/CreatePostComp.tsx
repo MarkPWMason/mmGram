@@ -54,6 +54,13 @@ const CreatePostComp = () => {
               const id = data.id;
               const imageUrl = data.imageUrl;
 
+              let isVideo = false;
+              if(data.filetype.includes('mp4')){
+                isVideo = true
+              } else {
+                isVideo = false
+              }
+              
               dispatch(
                 setPost({
                   id: id,
@@ -61,6 +68,8 @@ const CreatePostComp = () => {
                   content: postContent,
                   imageUrl: imageUrl,
                   user_id: userID,
+                  comments: [],
+                  isVideo: isVideo
                 })
               );
               dispatch(setModalState({modalState: false}));
@@ -80,11 +89,11 @@ const CreatePostComp = () => {
           placeholder="Title"
           onChange={(e) => {
             setPostTitle(e.target.value);
-            console.log(e.target.value);
           }}
         />
         <textarea
           className={styles.createPostContent}
+          maxLength={70}
           name="content"
           placeholder="Content"
           cols={30}
@@ -99,7 +108,7 @@ const CreatePostComp = () => {
           name="image"
           placeholder="Image"
           type="file"
-          accept="image/*"
+          accept="image/*, video/mp4"
           onChange={(e) => {
             if (e.currentTarget.files !== null)
               setPostImage(e.currentTarget.files[0]);
