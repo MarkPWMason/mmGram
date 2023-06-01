@@ -12,6 +12,8 @@ import {
 
 import styles from './Profile.module.css';
 
+require('dotenv').config();
+
 const Profile = () => {
   
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const Profile = () => {
   const user_id = urlParams.get('user_id') ?? userID; 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/userposts?user_id=${user_id}`, {
+    fetch(`${process.env.BACKEND_URL}/userposts?user_id=${user_id}`, {
       method: 'GET',
       headers: new Headers({
         'content-type': 'application/json',

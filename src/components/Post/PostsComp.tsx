@@ -6,6 +6,8 @@ import IPost from '../../interfaces/IPost';
 
 import { selectUserID } from '../../redux/slices/userSlice';
 
+require('dotenv').config();
+
 const PostsComp = () => {
   const dispatch = useDispatch();
   const posts = useSelector(selectPosts);
@@ -13,7 +15,7 @@ const PostsComp = () => {
   const [loaded, setLoaded] = useState<Boolean>(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/?user_id=${userID}`, { method: 'GET' })
+    fetch(`${process.env.BACKEND_URL}/?user_id=${userID}`, { method: 'GET' })
       .then((res) => {
         if (res.status === 200) {
           return res.json();

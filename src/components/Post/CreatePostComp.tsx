@@ -10,6 +10,8 @@ import {
 import styles from './CreatePostComp.module.css';
 import { setModalState } from '../../redux/slices/modalSlice';
 
+require('dotenv').config();
+
 const CreatePostComp = () => {
   const [postTitle, setPostTitle] = useState<any>('');
   const [postContent, setPostContent] = useState<any>('');
@@ -19,6 +21,8 @@ const CreatePostComp = () => {
   const authToken = useSelector(selectAuthToken);
 
   const dispatch = useDispatch();
+
+  
 
   return (
     <div>
@@ -34,7 +38,7 @@ const CreatePostComp = () => {
           fd.append('content', postContent);
           fd.append('user_id', userID.toString());
           fd.append('auth_token', authToken);
-          fetch('http://localhost:5000/createpost', {
+          fetch(`${process.env.BACKEND_URL}/createpost`, {
             method: 'POST',
             body: fd,
           })

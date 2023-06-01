@@ -22,6 +22,8 @@ import {
 } from '../../redux/slices/modalSlice';
 import CommentComp from './CommentComp';
 
+require('dotenv').config();
+
 const PostComp = ({ post }: { post: IPost }) => {
   const authToken = useSelector(selectAuthToken);
 
@@ -49,7 +51,7 @@ const PostComp = ({ post }: { post: IPost }) => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comments?post_id=${post.id}`, {
+    fetch(`${process.env.BACKEND_URL}/comments?post_id=${post.id}`, {
       method: 'GET',
       headers: new Headers({
         'content-type': 'application/json',
@@ -117,7 +119,7 @@ const PostComp = ({ post }: { post: IPost }) => {
               }}
               onClick={() => {
                 if (authToken) {
-                  fetch('http://localhost:5000/likepost', {
+                  fetch(`${process.env.BACKEND_URL}/likepost`, {
                     method: 'POST',
                     headers: new Headers({
                       'content-type': 'application/json',
@@ -192,7 +194,7 @@ const PostComp = ({ post }: { post: IPost }) => {
                   <button
                     className={styles.promptBtn}
                     onClick={() => {
-                      fetch('http://localhost:5000/deletepost', {
+                      fetch(`${process.env.BACKEND_URL}/deletepost`, {
                         method: 'DELETE',
                         headers: new Headers({
                           'content-type': 'application/json',
@@ -254,7 +256,7 @@ const PostComp = ({ post }: { post: IPost }) => {
               fd.append('user_id', userID.toString());
               fd.append('auth_token', authToken);
 
-              fetch('http://localhost:5000/updatepost', {
+              fetch(`${process.env.BACKEND_URL}/updatepost`, {
                 method: 'POST',
                 body: fd,
               })

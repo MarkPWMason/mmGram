@@ -4,6 +4,8 @@ import { setUserValues } from '../redux/slices/userSlice';
 
 import styles from './Login.module.css';
 
+require('dotenv').config();
+
 const Login = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -16,7 +18,7 @@ const Login = () => {
         className={styles.login}
         onSubmit={(e) => {
           e.preventDefault();
-          fetch('http://localhost:5000/login', {
+          fetch(`${process.env.BACKEND_URL}/login`, {
             method: 'POST',
             headers: new Headers({ 'content-type': 'application/json' }),
             body: JSON.stringify({
