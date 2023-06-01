@@ -9,3 +9,10 @@
   grid-template-columns: repeat(3, minmax(30px, 2fr));
   grid-template-rows: repeat(3, minmax(30px, 2fr));
 }
+
+@media only screen and (max-width: 840px) {
+  .profileContainer {
+    grid-template-columns: repeat(1, minmax(30px, 2fr));
+    grid-template-rows: repeat(1, minmax(30px, 2fr));
+  }
+}

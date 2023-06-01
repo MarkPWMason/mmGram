@@ -74,3 +74,36 @@
 .redirectBtn:hover{
   cursor: pointer;
 }
+
+@media only screen and (max-width: 840px) {
+  .loginContainer{
+    padding: 0;
+  }
+
+  .login {
+    margin: 0 auto;
+    width: auto;
+  }
+
+  .loginTitle{
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.loginUsername {
+  width: 200px;
+  height: 30px;
+}
+
+.loginPassword {
+  width: 200px;
+  height: 30px;
+}
+
+.loginBtn {
+  width: 150px;
+  height: 30px;
+}
+}

@@ -107,3 +107,36 @@
 .createPostSubmit:active{
     background-color: #9ea372;
 }
+
+@media only screen and (max-width: 840px) {
+  .createPostForm {
+    height: auto;
+    width: 200px;
+  }
+
+  .closeBtn{
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 20px;
+  }
+
+  .createPostTitle {
+    height: 40px;
+    width: 180px;
+  }
+
+  .createPostContent {
+    height: 200px;
+    width: 200px;
+  }
+
+  .createPostImage {
+    height: auto;
+    width: 200px;
+  }
+  .createPostSubmit {
+    height: auto;
+    width: 200px;
+    font-size: 20px;
+  }
+}

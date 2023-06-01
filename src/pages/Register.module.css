@@ -84,3 +84,41 @@
 
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 840px) {
+  .registerContainer{
+    padding: 0;
+  }
+
+  .register {
+    margin: 0 auto;
+    width: auto;
+  }
+
+  .registerTitle{
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.registerUsername {
+  width: 200px;
+  height: 30px;
+}
+
+.registerPassword {
+  width: 200px;
+  height: 30px;
+}
+
+.registerCode {
+  width: 250px;
+  height: 30px;
+}
+
+.registerBtn {
+  width: 150px;
+  height: 30px;
+}
+}

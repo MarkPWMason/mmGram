@@ -268,6 +268,7 @@ span {
   font-weight: bolder;
   align-self: flex-end;
   margin: 0;
+  color: #fff;
 }
 
 .closeBtn:hover {
@@ -429,4 +430,60 @@ span {
 .commentBtn:active {
   -webkit-animation: like 0.5s 1;
   animation: like 0.5s 1;
+}
+
+@media only screen and (max-width: 840px) {
+  .postContainer {
+    width: auto;
+    height: auto;
+  }
+
+  .postPrompt {
+    margin: auto;
+  }
+
+  .postBtnContainer{
+    margin: auto;
+  }
+
+  .postBtn {
+    margin: auto;
+  }
+
+  .postImage{
+    width: 300px;
+    height: 300px;
+  }
+
+  .editPostForm {
+    height: auto;
+    width: 200px;
+  }
+
+  .closeBtn {
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 20px;
+  }
+
+  .updatePostTitle {
+    height: auto;
+    width: 180px;
+  }
+
+  .updatePostContent {
+    height: auto;
+    width: 200px;
+  }
+
+  .updatePostImage {
+    height: auto;
+    width: 200px;
+  }
+
+  .updatePostSubmit {
+    height: auto;
+    width: 200px;
+    font-size: 20px;
+  }
 }
