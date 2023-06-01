@@ -108,7 +108,7 @@ const CreatePostComp = () => {
           name="image"
           placeholder="Image"
           type="file"
-          accept="image/*, video/mp4"
+          accept="image/*, video/*"
           onChange={(e) => {
             if (e.currentTarget.files !== null)
               setPostImage(e.currentTarget.files[0]);

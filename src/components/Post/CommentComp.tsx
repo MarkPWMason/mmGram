@@ -58,21 +58,24 @@ const CommentComp = ({
         {post.comments.map((c: any, index: number) => {
           return (
             <div key={index}>
-              <p className={styles.comment} >
-                <Link to={`/profile?user_id=${c.user_id}`}>{c.username}:</Link> {c.comment}{' '}
-                <button
-                  className={styles.replyBtn}
-                  onClick={() => {
-                    setRepliedUser(c.username);
-                    setReplyId(
-                      typeof c.reply_id === 'undefined' || c.reply_id == null
-                        ? c.id
-                        : c.reply_id
-                    );
-                  }}
-                >
-                  REPLY
-                </button>
+              <p className={styles.comment}>
+                <Link to={`/profile?user_id=${c.user_id}`}>{c.username}:</Link>{' '}
+                {c.comment}{' '}
+                <span className={styles.replyBtnDiv}>
+                  <button
+                    className={styles.replyBtn}
+                    onClick={() => {
+                      setRepliedUser(c.username);
+                      setReplyId(
+                        typeof c.reply_id === 'undefined' || c.reply_id == null
+                          ? c.id
+                          : c.reply_id
+                      );
+                    }}
+                  >
+                    REPLY
+                  </button>
+                </span>
               </p>
               {c.children &&
                 c.children.map((childComment: any, childIndex: number) => {
@@ -109,6 +112,7 @@ const CommentComp = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              setRepliedUser('');
               fetch('http://localhost:5000/addcomment', {
                 method: 'POST',
                 headers: new Headers({
@@ -150,6 +154,7 @@ const CommentComp = ({
           >
             <div className={styles.commentInput}>
               <textarea
+                className={styles.commentText}
                 placeholder="Please write your comment."
                 cols={80}
                 rows={4}
@@ -158,7 +163,9 @@ const CommentComp = ({
                   setPostComment(e.target.value);
                 }}
               ></textarea>
-              <button type="submit">POST</button>
+              <button className={styles.submit} type="submit">
+                POST
+              </button>
             </div>
           </form>
         </>

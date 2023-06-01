@@ -1,7 +1,7 @@
 .headerContainer {
     height: 100px;
     width: auto;
-    background-color: #292929;
+    background-color: #282828;
     display: flex;
     justify-content: space-between;
 }
@@ -32,7 +32,7 @@
 
 .accountBtnContent:hover{
     cursor: pointer;
-    color: #7285a3;
+    color: #3500D3;
 }
 
 #usernameLink{

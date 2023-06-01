@@ -1,95 +1,139 @@
-.commentContainer{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    left: 0;
-    right: 0;
-    top: 50px;
-    margin: auto auto;
-    width: 850px;
-    height: 650px;
-    background-color: #A39072;
-    border-radius: 10px;
-    justify-content: space-between;
+.commentContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  top: 50px;
+  margin: auto auto;
+  width: 850px;
+  height: 650px;
+  background-color: #282828;
+  border: 5px solid #3500d3;
+  border-radius: 10px;
+  justify-content: space-between;
 }
 
 .comments {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    justify-self: center;
-    margin: 10px auto;
-    width: 800px;
-    height: 500px;
-    background-color: #c8b393;
-    border: 2px solid black;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  justify-self: center;
+  margin: 10px auto;
+  width: 800px;
+  height: 500px;
+  background-color: #3500d3;
+  color: w;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
-.comment{
-    display: flex;
-    flex-direction: row;
-    margin: 20px 20px 6px 20px;
-    width: auto;
-    justify-content: space-between;
-    font-size: 25px;
+.comment {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  margin: 20px 20px 6px 20px;
+  width: auto;
+  font-size: 25px;
+  color: #fff;
+}
+
+.comment a {
+  text-decoration: none;
+  color: #fff;
+  padding-right: 10px;
 }
 
 .commentInput {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
-.replyForm{
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 600px;
-    height: 60px;
-    margin: auto auto;
-    display: flex;
+.replyForm {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 600px;
+  height: 60px;
+  margin: auto auto;
+  display: flex;
 }
 
 .repliedComment {
-    display: flex;
-    margin: 0 40px 5px 40px;
-    width: auto;
-    justify-content: space-between;
-    font-size: 18px;
+  display: flex;
+  margin: 0 40px 5px 40px;
+  width: auto;
+  justify-content: space-between;
+  font-size: 18px;
 }
 
-.replyingComment{
-    height: 20px;
-    align-self: center;
+.replyingComment {
+  height: 20px;
+  align-self: center;
 }
 
-.commentInput{
-    align-self: flex-end;
-    margin-bottom: 5px;
+.commentInput {
+  align-self: flex-end;
+  margin-bottom: 5px;
 }
 
-.replyBtn{
-    background-color: transparent;
-    border: none;
-    font-size: 11px;
+.commentText{
+    font-size: 25px;
+    margin-right: 10px;
+    width: 700px;
+    height: 60px;
 }
-.replyBtn:hover{
+
+.submit {
+  text-align: center;
+  align-self: center;
+
+  font-size: 20px;
+  border-radius: 12px;
+
+  margin: 20px auto;
+  border: 3px solid #190061;
+  background-color: #240091;
+  color: #fff;
+}
+.submit:hover {
     cursor: pointer;
+  }
+
+
+.replyBtn {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  font-size: 11px;
+  color: #fff;
+  justify-self: flex-end;
+  
+  
 }
 
-.closeBtn{
+.replyBtnDiv{
     position: absolute;
     right: 0;
-    width: 30px;
-    height: 30px;
-
-    font-size: 20px;
-    background-color: transparent;
-    border: none;
 }
 
-.closeBtn:hover{
-    cursor: pointer;
-    color: red;
+.replyBtn:hover {
+  cursor: pointer;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
+  color: red;
 }

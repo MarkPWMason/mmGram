@@ -62,7 +62,7 @@ const Login = () => {
         />
         <input
           className={styles.loginPassword}
-          type="text"
+          type="password"
           placeholder="password"
           value={password}
           onChange={(e) => {

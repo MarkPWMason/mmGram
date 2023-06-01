@@ -3,10 +3,8 @@
 }
 
 .postContainer {
-  position: relative;
   display: flex;
   flex-direction: column;
-  background-color: #9ea372;
   color: #fff;
   justify-content: center;
   align-content: center;
@@ -25,6 +23,10 @@
   padding: 1em;
 }
 
+.border{
+  position: relative;
+}
+
 span {
   position: absolute;
   border-radius: 100vmax;
@@ -38,8 +40,8 @@ span {
   background: linear-gradient(
     90deg,
     transparent 50%,
-    rgba(73, 49, 255, 0.5),
-    rgb(73, 49, 255)
+    rgba(53, 0, 211, 0.502),
+    rgb(53, 0, 211)
   );
 }
 
@@ -49,8 +51,8 @@ span {
   height: 5px;
   background: linear-gradient(
     90deg,
-    rgb(182, 37, 255),
-    rgba(182, 37, 255, 0.5),
+    rgb(53, 0, 211),
+    rgba(53, 0, 211, 0.5),
     transparent 50%
   );
 }
@@ -63,8 +65,8 @@ span {
   background: linear-gradient(
     180deg,
     transparent 30%,
-    rgba(82, 0, 137, 0.5),
-    rgb(82, 0, 137)
+    rgba(53, 0, 211, 0.5),
+    rgb(53, 0, 211)
   );
 }
 
@@ -75,8 +77,8 @@ span {
   height: 0;
   background: linear-gradient(
     180deg,
-    rgb(77, 0, 210),
-    rgba(77, 0, 210, 0.5),
+    rgb(53, 0, 211),
+    rgba(53, 0, 211, 0.5),
     transparent 70%
   );
 }
@@ -160,7 +162,7 @@ span {
   }
 }
 
-.postContainerPowerUp {
+/* .postContainerPowerUp {
   display: flex;
   flex-direction: column;
   background-color: #9ea372;
@@ -174,7 +176,7 @@ span {
   border-radius: 10px;
   background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
   animation: rotate 0.2s linear infinite;
-}
+} */
 
 @keyframes rotate {
   0% {
@@ -199,18 +201,28 @@ span {
 }
 
 .postImage {
+  position: relative;
   align-self: center;
   width: 500px;
   height: 500px;
   margin: 20px;
   border-radius: 10px;
   object-fit: cover;
-  border: 5px solid purple;
+}
+
+.postVideo{
+  position: relative;
+  align-self: center;
+  width: 500px;
+  height: 500px;
+  margin: 20px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .postBtn {
   display: flex;
-  margin: auto;
+  margin-left: 230px;
 }
 
 .promptBtn {
@@ -242,7 +254,8 @@ span {
   height: 600px;
   width: 800px;
   border-radius: 12px;
-  background-color: #a39072;
+  background-color: #282828;
+  border: 5px solid #3500D3;
   padding: 40px;
 }
 
@@ -250,7 +263,8 @@ span {
   width: -moz-fit-content;
   width: fit-content;
   font-size: 30px;
-  background-color: white;
+  background-color: #240091;
+  border: none;
   font-weight: bolder;
   align-self: flex-end;
   margin: 0;
@@ -269,8 +283,12 @@ span {
 
   font-size: 30px;
   border-radius: 12px;
-
+  
   margin: 20px auto;
+  
+  border: none;
+  background-color: #240091;
+  color: #fff;
 }
 
 .updatePostContent {
@@ -283,6 +301,9 @@ span {
   border-radius: 12px;
 
   margin: 20px auto;
+  border: none;
+  background-color: #240091;
+  color: #fff;
 }
 
 .updatePostImage {
@@ -295,6 +316,7 @@ span {
   border-radius: 12px;
 
   margin: 20px auto;
+  color: #fff;
 }
 .updatePostImage:hover {
   cursor: pointer;
@@ -306,7 +328,7 @@ span {
 }
 
 .updatePostImage::file-selector-button:active {
-  background-color: #9ea372;
+  background-color: purple;
 }
 
 .updatePostSubmit {
@@ -319,6 +341,9 @@ span {
   border-radius: 12px;
 
   margin: 20px auto;
+  border: 3px solid #190061;
+  background-color: #240091;
+  color: #fff;
 }
 
 .updatePostSubmit:hover {
@@ -326,7 +351,7 @@ span {
 }
 
 .updatePostSubmit:active {
-  background-color: #9ea372;
+  background-color: purple;
 }
 
 .postBtnContainer {

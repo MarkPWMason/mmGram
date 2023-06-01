@@ -13,21 +13,26 @@ import {
   selectAuthToken,
   selectUserID,
 } from '../../redux/slices/userSlice';
-import { selectPostModalId, setModalId } from '../../redux/slices/modalSlice';
+import {
+  closeAllModals,
+  selectContent,
+  selectPostModalId,
+  selectTitle,
+  setModalValues,
+} from '../../redux/slices/modalSlice';
 import CommentComp from './CommentComp';
 
 const PostComp = ({ post }: { post: IPost }) => {
   const authToken = useSelector(selectAuthToken);
 
-  const [updatedTitle, setUpdatedTitle] = useState<string>(post.title);
-  const [updatedContent, setUpdatedContent] = useState<string>(post.content);
   const [updatedImage, setUpdatedImage] = useState<any>(post.imageUrl);
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [liked, setLiked] = useState<boolean | null>(null);
-  const [powerUp, setPowerUp] = useState<boolean>(false);
 
   const userID = useSelector(selectUserID);
   const modalId = useSelector(selectPostModalId);
+  const title = useSelector(selectTitle);
+  const content = useSelector(selectContent);
   const isOwner = post.user_id.toString() === userID.toString();
   //delete
   const dispatch = useDispatch();
@@ -65,31 +70,33 @@ const PostComp = ({ post }: { post: IPost }) => {
 
   const isLiked = liked == null ? post.hasLiked : liked;
 
-  if (isLiked) {
-    setTimeout(() => {
-      setPowerUp(false);
-    }, 1000);
-  }
+  // if (isLiked) {
+  //   setTimeout(() => {
+  //     setPowerUp(false);
+  //   }, 1000);
+  // }
 
   return (
     <div className={styles.postComp}>
-      <div
-        className={powerUp ? styles.postContainerPowerUp : styles.postContainer}
-      >
-        <span className={styles.top}></span>
-        <span className={styles.bottom}></span>
-        <span className={styles.right}></span>
-        <span className={styles.left}></span>
+      <div className={styles.postContainer}>
         <h1 className={styles.postTitle}>{post.title}</h1>
         <p className={styles.postContent}>{post.content}</p>
 
-        {post.isVideo ? (
-          <video className={styles.postImage} controls width="250">
-            <source src={post.imageUrl} type="video/mp4" />
-          </video>
-        ) : (
-          <img className={styles.postImage} src={post.imageUrl} alt="" />
-        )}
+        <div className={styles.border}>
+          <span className={styles.top}></span>
+          <span className={styles.bottom}></span>
+          <span className={styles.right}></span>
+          <span className={styles.left}></span>
+          {post.isVideo ? (
+            <div>
+              <video className={styles.postVideo} controls width="250">
+                <source src={post.imageUrl} type="video/mp4" />
+              </video>
+            </div>
+          ) : (
+            <img className={styles.postImage} src={post.imageUrl} alt="" />
+          )}
+        </div>
 
         <div className={styles.postPrompt}>
           <div className={styles.likes}>
@@ -131,9 +138,6 @@ const PostComp = ({ post }: { post: IPost }) => {
                       race condition avoided by using the isLiked state rather than the liked state 
                       because the state for liked hasn't changed yet because of the setLiked func above.
                       */
-                      if (!isLiked) {
-                        setPowerUp(true);
-                      }
 
                       dispatch(
                         updatePostLikes({
@@ -164,70 +168,75 @@ const PostComp = ({ post }: { post: IPost }) => {
             {commentOpen && (
               <CommentComp setCommentOpen={setCommentOpen} post={post} />
             )}
+            {isOwner && (
+              <div className={styles.postBtnContainer}>
+                <div className={styles.postBtn}>
+                  <button
+                    className={styles.promptBtn}
+                    onClick={() => {
+                      dispatch(
+                        setModalValues({
+                          postModalId: post.id,
+                          title: post.title,
+                          content: post.content,
+                        })
+                      );
+                    }}
+                  >
+                    <img
+                      className={styles.postPrompts}
+                      src="/images/edit.svg"
+                      alt="EDIT"
+                    />
+                  </button>
+                  <button
+                    className={styles.promptBtn}
+                    onClick={() => {
+                      fetch('http://localhost:5000/deletepost', {
+                        method: 'DELETE',
+                        headers: new Headers({
+                          'content-type': 'application/json',
+                        }),
+                        body: JSON.stringify({
+                          id: post.id,
+                          user_id: userID,
+                          auth_token: authToken,
+                        }),
+                      })
+                        .then((res) => {
+                          if (res.status === 200) {
+                            return res.text();
+                          } else if (res.status === 403) {
+                            throw new Error('Unauthorized');
+                          } else if (res.status === 500) {
+                            throw new Error('Server Error');
+                          }
+                        })
+                        .then((data) => {
+                          dispatch(deletePosts({ id: post.id }));
+                        })
+                        .catch((err) => {
+                          if (err.message === 'Unauthorized') {
+                            alert('Unauthorized error message');
+                            dispatch(removeUserValues());
+                          } else if (err.message === 'Server Error') {
+                            alert('Server Error');
+                          }
+                          console.error(err);
+                        });
+                    }}
+                  >
+                    <img
+                      className={styles.postPrompts}
+                      src="/images/delete.svg"
+                      alt="DELETE"
+                    />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-
-        {isOwner && (
-          <div className={styles.postBtnContainer}>
-            <div className={styles.postBtn}>
-              <button
-                className={styles.promptBtn}
-                onClick={() => {
-                  dispatch(setModalId({ postModalId: post.id }));
-                }}
-              >
-                <img
-                  className={styles.postPrompts}
-                  src="/images/edit.svg"
-                  alt="EDIT"
-                />
-              </button>
-              <button
-                className={styles.promptBtn}
-                onClick={() => {
-                  fetch('http://localhost:5000/deletepost', {
-                    method: 'DELETE',
-                    headers: new Headers({
-                      'content-type': 'application/json',
-                    }),
-                    body: JSON.stringify({
-                      id: post.id,
-                      user_id: userID,
-                      auth_token: authToken,
-                    }),
-                  })
-                    .then((res) => {
-                      if (res.status === 200) {
-                        return res.text();
-                      } else if (res.status === 403) {
-                        throw new Error('Unauthorized');
-                      } else if (res.status === 500) {
-                        throw new Error('Server Error');
-                      }
-                    })
-                    .then((data) => {
-                      dispatch(deletePosts({ id: post.id }));
-                    })
-                    .catch((err) => {
-                      if (err.message === 'Unauthorized') {
-                        alert('Unauthorized error message');
-                        dispatch(removeUserValues());
-                      } else if (err.message === 'Server Error') {
-                        alert('Server Error');
-                      }
-                      console.error(err);
-                    });
-                }}
-              >
-                <img
-                  className={styles.postPrompts}
-                  src="/images/delete.svg"
-                  alt="DELETE"
-                />
-              </button>
-            </div>
-          </div>
-        )}
       </div>
 
       {modalId === post.id && (
@@ -239,8 +248,8 @@ const PostComp = ({ post }: { post: IPost }) => {
 
               const fd = new FormData();
               fd.append('image', updatedImage);
-              fd.append('title', updatedTitle);
-              fd.append('content', updatedContent);
+              fd.append('title', title);
+              fd.append('content', content);
               fd.append('id', post.id.toString());
               fd.append('user_id', userID.toString());
               fd.append('auth_token', authToken);
@@ -264,18 +273,19 @@ const PostComp = ({ post }: { post: IPost }) => {
                   /* 
                     was not sending the up to date values I was recieving from data instead I was sending the old values from form data.
                   */
-                  dispatch(setModalId({ postModalId: -1 }));
+                  dispatch(closeAllModals());
                   const title = data.title;
                   const imageUrl = data.imageUrl;
                   const content = data.content;
-
                   let isVideo = false;
-                  if (data.filetype.includes('mp4')) {
+                  if (
+                    typeof data.filetype !== 'undefined' &&
+                    data.filetype.includes('mp4')
+                  ) {
                     isVideo = true;
                   } else {
                     isVideo = false;
                   }
-
                   dispatch(
                     updatePosts({
                       user_id: post.user_id,
@@ -288,7 +298,6 @@ const PostComp = ({ post }: { post: IPost }) => {
                   );
                 })
                 .catch((err) => {
-                  console.error(err);
                   if (err.message === 'Unauthorized') {
                     alert('Unauthorized');
                     dispatch(removeUserValues());
@@ -303,7 +312,7 @@ const PostComp = ({ post }: { post: IPost }) => {
           >
             <button
               onClick={() => {
-                dispatch(setModalId({ postModalId: -1 }));
+                dispatch(closeAllModals());
               }}
               className={styles.closeBtn}
             >
@@ -313,9 +322,15 @@ const PostComp = ({ post }: { post: IPost }) => {
               className={styles.updatePostTitle}
               type="text"
               placeholder="Title"
-              value={updatedTitle}
+              value={title}
               onChange={(e) => {
-                setUpdatedTitle(e.target.value);
+                dispatch(
+                  setModalValues({
+                    postModalId: modalId,
+                    title: e.target.value,
+                    content: content,
+                  })
+                );
               }}
             />
             <textarea
@@ -324,16 +339,22 @@ const PostComp = ({ post }: { post: IPost }) => {
               placeholder="Content"
               cols={30}
               rows={10}
-              value={updatedContent}
+              value={content}
               onChange={(e) => {
-                setUpdatedContent(e.target.value);
+                dispatch(
+                  setModalValues({
+                    postModalId: modalId,
+                    title: title,
+                    content: e.target.value,
+                  })
+                );
               }}
             />
             <input
               className={styles.updatePostImage}
               placeholder="Image"
               type="file"
-              accept="image/*, video/mp4"
+              accept="image/*, video/*"
               onChange={(e) => {
                 if (e.currentTarget.files !== null)
                   setUpdatedImage(e.currentTarget.files[0]);

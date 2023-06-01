@@ -9,8 +9,8 @@
   height: 600px;
   width: 800px;
   border-radius: 12px;
-  background-color: #a39072;
-
+  background-color: #282828;
+  border: 5px solid #3500D3;
   padding: 40px;
 }
 
@@ -39,6 +39,9 @@
   border-radius: 12px;
 
   margin: 20px auto;
+  border: none;
+  background-color: #240091;
+  color: #fff;
 }
 
 .createPostContent {
@@ -51,6 +54,9 @@
   border-radius: 12px;
 
   margin: 20px auto;
+  border: none;
+  background-color: #240091;
+  color: #fff;
 }
 
 .createPostImage {
@@ -63,6 +69,7 @@
   border-radius: 12px;
 
   margin: 20px auto;
+  color: #fff;
 }
 
 .createPostImage:hover{
@@ -88,6 +95,9 @@
   border-radius: 12px;
   
   margin: 20px auto;
+  border: 3px solid #190061;
+  background-color: #240091;
+  color: #fff;
 }
 
 .createPostSubmit:hover{

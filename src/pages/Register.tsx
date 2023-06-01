@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserValues } from '../redux/slices/userSlice';
 
+import styles from './Register.module.css';
+
 const Register = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [inviteCode, setInviteCode] = useState<string>('');
 
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className={styles.registerContainer}>
       <form
+        className={styles.register}
         onSubmit={(e) => {
           e.preventDefault();
           fetch('http://localhost:5000/register', {
@@ -19,6 +23,7 @@ const Register = () => {
             body: JSON.stringify({
               username: username,
               password: password,
+              inviteCode: inviteCode,
             }),
           })
             .then((res) => {
@@ -27,6 +32,8 @@ const Register = () => {
               } else if (res.status === 409) {
                 //409 - Conflict
                 throw new Error('Username exists');
+              } else if (res.status === 403) {
+                throw new Error('Unauthorised Action');
               } else {
                 throw new Error('Server Error');
               }
@@ -48,6 +55,8 @@ const Register = () => {
             .catch((err) => {
               if (err.message === 'Username exists') {
                 alert('Username already exists please choose another.');
+              } else if(err.message === 'Unauthorised Action'){
+                alert('Invite Code Incorrect');
               } else {
                 alert('There was a problem.');
               }
@@ -55,7 +64,9 @@ const Register = () => {
             });
         }}
       >
+        <h1 className={styles.registerTitle}>Register</h1>
         <input
+          className={styles.registerUsername}
           type="text"
           placeholder="username"
           onChange={(e) => {
@@ -63,13 +74,28 @@ const Register = () => {
           }}
         />
         <input
-          type="text"
+          className={styles.registerPassword}
+          type="password"
           placeholder="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <input type="submit" name="" id="" value="Sub" />
+        <input
+          className={styles.registerCode}
+          type="text"
+          placeholder="Invite Code"
+          onChange={(e) => {
+            setInviteCode(e.target.value);
+          }}
+        />
+        <input
+          className={styles.registerBtn}
+          type="submit"
+          name=""
+          id=""
+          value="Register"
+        />
       </form>
     </div>
   );

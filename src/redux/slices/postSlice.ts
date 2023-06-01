@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import IPost from '../../interfaces/IPost';
 
@@ -28,6 +28,7 @@ export const postSlice = createSlice({
         hasLiked,
         isVideo
       } = action.payload;
+
       if (state.posts == null) {
         state.posts = [
           {
@@ -70,6 +71,7 @@ export const postSlice = createSlice({
     },
     updatePosts: (state, action) => {
       const { title, content, imageUrl, id, isVideo } = action.payload;
+      console.log('i got dispatched', action.payload)
       if (state.posts != null) {
         state.posts = state.posts.map((p) => {
           if (p.id === id) {
@@ -78,6 +80,8 @@ export const postSlice = createSlice({
             if (imageUrl !== null && typeof imageUrl != 'undefined') {
               p.imageUrl = imageUrl;
               p.isVideo = isVideo
+
+              console.log(imageUrl)
             }
           }
           return p;
