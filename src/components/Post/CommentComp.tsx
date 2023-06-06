@@ -8,8 +8,6 @@ import { selectUsername } from '../../redux/slices/userSlice';
 import IPost from '../../interfaces/IPost';
 import { Link } from 'react-router-dom';
 
-require('dotenv').config();
-
 
 const CommentComp = ({
   post,
@@ -28,7 +26,7 @@ const CommentComp = ({
   const authToken = useSelector(selectAuthToken);
 
   useEffect(() => {
-    fetch(`${process.env.BACKEND_URL}/comments?post_id=${post.id}`, {
+    fetch(`http://localhost:5000/comments?post_id=${post.id}`, {
       method: 'GET',
       headers: new Headers({
         'content-type': 'application/json',
@@ -116,7 +114,7 @@ const CommentComp = ({
             onSubmit={(e) => {
               e.preventDefault();
               setRepliedUser('');
-              fetch(`${process.env.BACKEND_URL}/addcomment`, {
+              fetch(`http://localhost:5000/addcomment`, {
                 method: 'POST',
                 headers: new Headers({
                   'content-type': 'application/json',

@@ -4,7 +4,7 @@ import { setUserValues } from '../redux/slices/userSlice';
 
 import styles from './Register.module.css';
 
-require('dotenv').config();
+
 
 const Register = () => {
   const [username, setUsername] = useState<string>('');
@@ -19,7 +19,7 @@ const Register = () => {
         className={styles.register}
         onSubmit={(e) => {
           e.preventDefault();
-          fetch(`${process.env.BACKEND_URL}/register`, {
+          fetch(`http://localhost:5000/register`, {
             method: 'POST',
             headers: new Headers({ 'content-type': 'application/json' }),
             body: JSON.stringify({
