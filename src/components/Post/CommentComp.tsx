@@ -26,7 +26,7 @@ const CommentComp = ({
   const authToken = useSelector(selectAuthToken);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comments?post_id=${post.id}`, {
+    fetch(`http://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/comments?post_id=${post.id}`, {
       method: 'GET',
       headers: new Headers({
         'content-type': 'application/json',
@@ -114,7 +114,7 @@ const CommentComp = ({
             onSubmit={(e) => {
               e.preventDefault();
               setRepliedUser('');
-              fetch(`http://localhost:5000/addcomment`, {
+              fetch(`http://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/addcomment`, {
                 method: 'POST',
                 headers: new Headers({
                   'content-type': 'application/json',

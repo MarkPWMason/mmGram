@@ -38,7 +38,7 @@ const CreatePostComp = () => {
           fd.append('content', postContent);
           fd.append('user_id', userID.toString());
           fd.append('auth_token', authToken);
-          fetch(`http://localhost:5000/createpost`, {
+          fetch(`http://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/createpost`, {
             method: 'POST',
             body: fd,
           })
