@@ -19,7 +19,7 @@ const Register = () => {
         className={styles.register}
         onSubmit={(e) => {
           e.preventDefault();
-          fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/register`, {
+          fetch(`http://backend.mmgram.co.uk:5000/register`, {
             method: 'POST',
             headers: new Headers({ 'content-type': 'application/json' }),
             body: JSON.stringify({

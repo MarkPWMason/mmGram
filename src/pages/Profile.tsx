@@ -45,7 +45,7 @@ const Profile = () => {
   const user_id = urlParams.get('user_id') ?? userID; 
 
   useEffect(() => {
-    fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/userposts?user_id=${user_id}`, {
+    fetch(`http://backend.mmgram.co.uk:5000/userposts?user_id=${user_id}`, {
       method: 'GET',
       headers: new Headers({
         'content-type': 'application/json',

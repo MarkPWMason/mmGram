@@ -51,7 +51,7 @@ const PostComp = ({ post }: { post: IPost }) => {
   };
 
   useEffect(() => {
-    fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/comments?post_id=${post.id}`, {
+    fetch(`http://backend.mmgram.co.uk:5000/comments?post_id=${post.id}`, {
       method: 'GET',
       headers: new Headers({
         'content-type': 'application/json',
@@ -119,7 +119,7 @@ const PostComp = ({ post }: { post: IPost }) => {
               }}
               onClick={() => {
                 if (authToken) {
-                  fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/likepost`, {
+                  fetch(`http://backend.mmgram.co.uk:5000/likepost`, {
                     method: 'POST',
                     headers: new Headers({
                       'content-type': 'application/json',
@@ -194,7 +194,7 @@ const PostComp = ({ post }: { post: IPost }) => {
                   <button
                     className={styles.promptBtn}
                     onClick={() => {
-                      fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/deletepost`, {
+                      fetch(`http://backend.mmgram.co.uk:5000/deletepost`, {
                         method: 'DELETE',
                         headers: new Headers({
                           'content-type': 'application/json',
@@ -256,7 +256,7 @@ const PostComp = ({ post }: { post: IPost }) => {
               fd.append('user_id', userID.toString());
               fd.append('auth_token', authToken);
 
-              fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/updatepost`, {
+              fetch(`http://backend.mmgram.co.uk:5000/updatepost`, {
                 method: 'POST',
                 body: fd,
               })
