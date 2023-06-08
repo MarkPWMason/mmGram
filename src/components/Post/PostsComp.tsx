@@ -15,7 +15,7 @@ const PostsComp = () => {
   const [loaded, setLoaded] = useState<Boolean>(false);
 
   useEffect(() => {
-    fetch(`http://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/?user_id=${userID}`, { method: 'GET' })
+    fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/?user_id=${userID}`, { method: 'GET' })
       .then((res) => {
         if (res.status === 200) {
           return res.json();

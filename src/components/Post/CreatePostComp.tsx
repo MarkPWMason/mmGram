@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPost } from '../../redux/slices/postSlice';
 import {
@@ -38,7 +38,7 @@ const CreatePostComp = () => {
           fd.append('content', postContent);
           fd.append('user_id', userID.toString());
           fd.append('auth_token', authToken);
-          fetch(`http://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/createpost`, {
+          fetch(`https://test-env.eba-hhrcegcm.us-east-1.elasticbeanstalk.com:5000/createpost`, {
             method: 'POST',
             body: fd,
           })
