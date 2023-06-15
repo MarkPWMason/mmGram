@@ -433,6 +433,10 @@ span {
 }
 
 @media only screen and (max-width: 840px) {
+  .postTitle {
+    text-align: center;
+  }
+
   .postContainer {
     width: auto;
     height: auto;

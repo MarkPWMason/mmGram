@@ -91,7 +91,7 @@ const PostComp = ({ post }: { post: IPost }) => {
           <span className={styles.left}></span>
           {post.isVideo ? (
             <div>
-              <video className={styles.postVideo} controls width="250">
+              <video className={styles.postImage} controls width="250">
                 <source src={post.imageUrl} type="video/mp4" />
               </video>
             </div>
