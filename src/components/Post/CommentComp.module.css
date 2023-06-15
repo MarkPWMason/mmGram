@@ -152,6 +152,7 @@
 @media only screen and (max-width: 700px) {
   .commentContainer {
     width: 550px;
+    height: 600px;
   }
 
   .comments {
@@ -171,6 +172,7 @@
 @media only screen and (max-width: 600px) {
   .commentContainer {
     width: 450px;
+    height: 600px;
   }
 
   .comments {
@@ -185,6 +187,16 @@
 
   .submit{
     margin: 0;
+  }
+
+  .comment {
+    font-size: 15px;
+  }
+  .repliedComment {
+    font-size: 13px;
+  }
+  .replyBtn {
+    font-size: 15px;
   }
 }
 
@@ -207,10 +219,13 @@
   }
 
   .comment {
-    font-size: 20px;
+    font-size: 15px;
   }
   .repliedComment {
     font-size: 13px;
+  }
+  .replyBtn {
+    font-size: 15px;
   }
 }
 
@@ -232,9 +247,12 @@
     margin: 0;
   }
   .comment {
-    font-size: 15px;
+    font-size: 8px;
   }
   .repliedComment {
-    font-size: 10px;
+    font-size: 7px;
+  }
+  .replyBtn {
+    font-size: 8px;
   }
 }
