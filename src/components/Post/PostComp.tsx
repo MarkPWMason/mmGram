@@ -107,7 +107,7 @@ const PostComp = ({ post }: { post: IPost }) => {
             </p>
             <img
               className={styles.likeBtnImg}
-              src={isLiked ? '/images/likedLike.svg' : '/images/like.svg'}
+              src={isLiked && authToken ? '/images/likedLike.svg' : '/images/like.svg'}
               alt=""
               onMouseOver={(e) => {
                 e.currentTarget.src = '/images/likedLike.svg';
@@ -135,6 +135,7 @@ const PostComp = ({ post }: { post: IPost }) => {
                       }
                     })
                     .then((data) => {
+                      console.log("");
                       setLiked(!isLiked);
                       /* 
                       race condition avoided by using the isLiked state rather than the liked state 
@@ -152,7 +153,7 @@ const PostComp = ({ post }: { post: IPost }) => {
                       console.error(err);
                     });
                 } else {
-                  alert('You need to be logged in');
+                  alert('You need to be logged in order to like the post.');
                 }
               }}
             />

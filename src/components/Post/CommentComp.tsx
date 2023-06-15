@@ -114,6 +114,7 @@ const CommentComp = ({
             onSubmit={(e) => {
               e.preventDefault();
               setRepliedUser('');
+              setReplyId(null)
               fetch(`http://backend.mmgram.co.uk:5000/addcomment`, {
                 method: 'POST',
                 headers: new Headers({

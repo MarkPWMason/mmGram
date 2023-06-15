@@ -78,11 +78,11 @@
   margin-bottom: 5px;
 }
 
-.commentText{
-    font-size: 25px;
-    margin-right: 10px;
-    width: 700px;
-    height: 60px;
+.commentText {
+  font-size: 25px;
+  margin-right: 10px;
+  width: 700px;
+  height: 60px;
 }
 
 .submit {
@@ -98,9 +98,8 @@
   color: #fff;
 }
 .submit:hover {
-    cursor: pointer;
-  }
-
+  cursor: pointer;
+}
 
 .replyBtn {
   display: flex;
@@ -109,13 +108,11 @@
   font-size: 11px;
   color: #fff;
   justify-self: flex-end;
-  
-  
 }
 
-.replyBtnDiv{
-    position: absolute;
-    right: 0;
+.replyBtnDiv {
+  position: absolute;
+  right: 0;
 }
 
 .replyBtn:hover {
@@ -136,4 +133,108 @@
 .closeBtn:hover {
   cursor: pointer;
   color: red;
+}
+
+@media only screen and (max-width: 860px) {
+  .commentContainer {
+    width: 650px;
+  }
+
+  .comments {
+    width: 600px;
+    height: 650px;
+  }
+  .commentText {
+    width: 500px;
+    height: 50px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .commentContainer {
+    width: 550px;
+  }
+
+  .comments {
+    width: 500px;
+    height: 650px;
+  }
+  .commentText {
+    width: 400px;
+    height: 40px;
+  }
+
+  .submit{
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .commentContainer {
+    width: 450px;
+  }
+
+  .comments {
+    width: 400px;
+    height: 650px;
+  }
+
+  .commentText {
+    width: 300px;
+    height: 30px;
+  }
+
+  .submit{
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  .commentContainer {
+    width: 350px;
+  }
+
+  .comments {
+    width: 300px;
+    height: 650px;
+  }
+  .commentText {
+    width: 200px;
+    height: 20px;
+  }
+
+  .submit{
+    margin: 0;
+  }
+
+  .comment {
+    font-size: 20px;
+  }
+  .repliedComment {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 368px) {
+  .commentContainer {
+    width: 250px;
+  }
+
+  .comments {
+    width: 200px;
+    height: 650px;
+  }
+  .commentText {
+    width: 100px;
+    height: 20px;
+  }
+
+  .submit{
+    margin: 0;
+  }
+  .comment {
+    font-size: 15px;
+  }
+  .repliedComment {
+    font-size: 10px;
+  }
 }
